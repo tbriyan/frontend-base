@@ -3,42 +3,19 @@ import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ProductService } from './app.service';
+import { Producto } from './producto/producto';
 
-export interface Product {
-  id?: string;
-  code?: string;
-  name?: string;
-  description?: string;
-  price?: number;
-  quantity?: number;
-  inventoryStatus?: string;
-  category?: string;
-  image?: string;
-  rating?: number;
-}
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule, TableModule],
+  imports: [RouterOutlet, ButtonModule, TableModule, Producto],
   providers: [ProductService],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  protected title = 'mi-app';
+  protected title = 'Mi tienda de productos';
 
-  products!: any[];
+  constructor() {}
 
-  constructor(private productService: ProductService) {}
-
-  ngOnInit() {
-    this.productService.getProductsMini().then((data) => {
-      this.products = data;
-    });
-  }
-
-  obtenerProductos(){
-    this.productService.obtenerProductos().subscribe((data) => {
-      console.log(data);
-    })
-  }
+  ngOnInit() {}
 }
